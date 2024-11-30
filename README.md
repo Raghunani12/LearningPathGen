@@ -35,10 +35,10 @@ This project leverages a robust React-based frontend for user interaction and a 
 See it in action!
 Watch the demonstration video to explore the features of the Personalized Learning Path Generator in detail:
 
-<video width="720" height="480" controls>
-  <source src="assets/demo/PathGen.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+<section id="demo">
+    <a href="https://drive.google.com/file/d/1yQFCRJFttThpUIuyCduY-Azk2bvFO_g0/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Click Here</a>
+</section>
+
 
 
 ---
