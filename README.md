@@ -180,8 +180,6 @@ Special thanks to the Gemini API team for providing robust and reliable resource
 ---
 
 ## Contributors
-- **Your Name**: Lead Developer and Architect
-- **Contributor 1**: API Integration Specialist
-- **Contributor 2**: Frontend Developer
-- **Contributor 3**: Backend Developer
+- **Your Name**: Raghu Sattu
+
 
