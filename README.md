@@ -184,7 +184,4 @@ Special thanks to the Gemini API team for providing robust and reliable resource
 
 ---
 
-## Contributors
-- **Your Name**: Raghu Sattu
-
 
