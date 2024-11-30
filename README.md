@@ -39,8 +39,13 @@ Watch the demonstration video to explore the features of the Personalized Learni
     <a href="https://drive.google.com/file/d/1yQFCRJFttThpUIuyCduY-Azk2bvFO_g0/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Click Here</a>
 </section>
 
-
-
+## Screens
+Screen-01
+<img src="assets/demo/1.png"></img>
+Screen-02
+<img src="assets/demo/2.png"></img>
+Screen-03
+<img src="assets/demo/3.png"></img>
 ---
 
 ## File Structure
