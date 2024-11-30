@@ -36,7 +36,7 @@ See it in action!
 Watch the demonstration video to explore the features of the Personalized Learning Path Generator in detail:
 
 <video width="720" height="480" controls>
-  <source src="PathGen.mp4" type="video/mp4">
+  <source src="assets/demo/PathGen.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
 
