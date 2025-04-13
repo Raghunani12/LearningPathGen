@@ -5,7 +5,7 @@ import type { SkillLevel as SkillLevelType } from '../types';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
 // Initialize Generative AI instance
-const genAI = new GoogleGenerativeAI('AIzaSyBEVDPfeVUIiQiOGxK1X6whjiQSZJwSbFY');
+const genAI = new GoogleGenerativeAI('AIzaSyD85tV_rAv2oGnpUKiBsed0KG3tYKlIWjc');
 
 // Question structure
 interface Question {
