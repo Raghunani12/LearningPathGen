@@ -65,7 +65,9 @@ export const SkillLevel: React.FC = () => {
         ]
       `;
 
-      const model = genAI.getGenerativeModel({ model: 'gemini-pro' }); // Can use gemini-1.5-flash if preferred
+      //const model = genAI.getGenerativeModel({ model: 'gemini-pro' }); // Can use gemini-1.5-flash if preferred
+      const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' }); // ✅ This one works with v1beta
+
       const result = await model.generateContent(prompt);
       const response = await result.response.text();
 
