@@ -32,7 +32,7 @@ function App() {
     const response = await axios({
     // Using v1beta as it currently hosts the latest models like gemini-1.5-flash-latest.
     // Replace YOUR_API_KEY with your actual API key.
-    url: 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyDjCyTRAz29GPkwoBDBYaEDq2oEWJjkzes', 
+    url: 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=AIzaSyD85tV_rAv2oGnpUKiBsed0KG3tYKlIWjc', 
     method: 'post',
     data: {
       contents: [
