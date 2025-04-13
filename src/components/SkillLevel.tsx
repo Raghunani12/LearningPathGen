@@ -161,21 +161,14 @@
 //     </div>
 //   );
 // };
+//UPDATE CODE HERE
+
 import React, { useState } from 'react';
 import { useStore } from '../store/useStore';
 import { GraduationCap, Book, Trophy } from 'lucide-react';
-import type { SkillLevel as SkillLevelType } from '../types';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
-// Initialize Gemini with your API Key
 const genAI = new GoogleGenerativeAI('AIzaSyD85tV_rAv2oGnpUKiBsed0KG3tYKlIWjc');
-
-interface Question {
-  id: string;
-  text: string;
-  options: string[];
-  correctAnswer: number;
-}
 
 const skillLevels = [
   {
@@ -203,51 +196,39 @@ const skillLevels = [
 
 export const SkillLevel: React.FC = () => {
   const { setSkillLevel, nextStep, setQuestions, selectedTopic } = useStore();
-  const [status, setStatus] = useState<boolean>(false);
+  const [status, setStatus] = useState(false);
 
-  const handleSkillSelect = async (level: SkillLevelType) => {
+  const handleSkillSelect = async (level: string) => {
     setSkillLevel(level);
     setStatus(true);
 
     try {
       const prompt = `
-Generate a quiz of 5 multiple choice questions for the topic "${selectedTopic?.name ?? 'general knowledge'}" suitable for a "${level}" level. 
-
-Return it as a valid JSON array with this structure (no explanation, no markdown, only JSON):
+Generate a quiz of 5 multiple choice questions for the topic "${selectedTopic?.name ?? 'general knowledge'}" suitable for a "${level}" level. Return ONLY valid JSON (no markdown, no explanation) in the following format:
 
 [
   {
     "id": "1",
-    "text": "What is ...?",
-    "options": ["Option 1", "Option 2", "Option 3", "Option 4"],
-    "correctAnswer": "Option 2"
-  },
-  ...
+    "text": "Question?",
+    "options": ["A", "B", "C", "D"],
+    "correctAnswer": "B"
+  }
 ]
 `;
 
-      const model = genAI.getGenerativeModel({ model: 'gemini-pro' });
+      const model = genAI.getGenerativeModel({ model: 'models/gemini-2.0-flash' });
 
       const result = await model.generateContent(prompt);
       const response = await result.response.text();
 
-      // Parse the string into JSON
+      // Parse response
       const parsedData = JSON.parse(response);
-
-      // Convert correctAnswer from string to index
-      const formattedQuestions: Question[] = parsedData.map((q: any) => {
-        const correctIndex = q.options.indexOf(q.correctAnswer);
-        return {
-          id: q.id,
-          text: q.text,
-          options: q.options,
-          correctAnswer: correctIndex >= 0 ? correctIndex : 0,
-        };
-      });
-
-      if (!Array.isArray(formattedQuestions) || formattedQuestions.length === 0) {
-        throw new Error('Parsed response does not contain valid questions.');
-      }
+      const formattedQuestions = parsedData.map((q: any) => ({
+        id: q.id,
+        text: q.text,
+        options: q.options,
+        correctAnswer: q.options.indexOf(q.correctAnswer),
+      }));
 
       setQuestions(formattedQuestions);
       nextStep();
@@ -268,7 +249,7 @@ Return it as a valid JSON array with this structure (no explanation, no markdown
         {skillLevels.map(({ level, title, description, icon: Icon, color }) => (
           <button
             key={level}
-            onClick={() => handleSkillSelect(level as SkillLevelType)}
+            onClick={() => handleSkillSelect(level)}
             className="p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col items-center space-y-4 border border-gray-100 hover:border-blue-500"
           >
             <div className={`w-16 h-16 ${color} rounded-full flex items-center justify-center`}>
