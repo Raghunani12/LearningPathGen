@@ -13,21 +13,48 @@ function App() {
   async function generateAnswer() {
     setGeneratedText('Fetching your data...');
     try {
-      const response = await axios({
-        url: 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=AIzaSyDjCyTRAz29GPkwoBDBYaEDq2oEWJjkzes',
-        method: 'post',
-        data: {
-          contents: [
+      // const response = await axios({
+      //   url: 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=AIzaSyDjCyTRAz29GPkwoBDBYaEDq2oEWJjkzes',
+      //   method: 'post',
+      //   data: {
+      //     contents: [
+      //       {
+      //         parts: [
+      //           {
+      //             text: Set of 5 multiple-choice questions on ${question}. Each question should include four options, labeled a), b), c), and d). Indicate the correct option with the letters a,b,c,d,
+      //           },
+      //         ],
+      //       },
+      //     ],
+      //   },
+      // });
+
+    const response = await axios({
+    // Using v1beta as it currently hosts the latest models like gemini-1.5-flash-latest.
+    // Replace YOUR_API_KEY with your actual API key.
+    url: 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=AIzaSyDjCyTRAz29GPkwoBDBYaEDq2oEWJjkzes', 
+    method: 'post',
+    data: {
+      contents: [
+        {
+          parts: [
             {
-              parts: [
-                {
-                  text: Set of 5 multiple-choice questions on ${question}. Each question should include four options, labeled a), b), c), and d). Indicate the correct option with the letters a,b,c,d,
-                },
-              ],
+              // Ensure the 'question' variable is defined in the scope where this code runs.
+              // Example: const question = "Solar System";
+              text: `Set of 5 multiple-choice questions on ${question}. Each question should include four options, labeled a), b), c), and d). Indicate the correct option with the letters a,b,c,d,` 
             },
           ],
         },
-      });
+      ],
+      // You can optionally include generationConfig here if needed:
+      // generationConfig: {
+      //   temperature: 0.7,
+      //   maxOutputTokens: 800,
+      //   topP: 1.0,
+      //   topK: 40
+      // }
+    },
+  });
 
       const generatedContent = response.data.candidates[0].content.parts[0].text;
       processGeneratedText(generatedContent);
