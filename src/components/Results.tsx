@@ -6,7 +6,7 @@ import { RoadmapView } from './RoadmapView';
 import { Node, Edge, MarkerType } from 'react-flow-renderer';
 import { toPng } from 'html-to-image';
 
-const genAI = new GoogleGenerativeAI('AIzaSyBEVDPfeVUIiQiOGxK1X6whjiQSZJwSbFY');
+const genAI = new GoogleGenerativeAI('AIzaSyD85tV_rAv2oGnpUKiBsed0KG3tYKlIWjc');
 
 const DEFAULT_MILESTONES = [
   {
@@ -89,7 +89,7 @@ export const Results = () => {
   useEffect(() => {
     const generateLearningPath = async () => {
       try {
-        const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
         const prompt = `Create a learning path for ${selectedTopic?.name} at ${skillLevel} level. The user scored ${percentage}% on the assessment. Return a JSON array of exactly 5-7 learning milestones. Each milestone should have these exact properties:
         {
           "id": "unique-string",
